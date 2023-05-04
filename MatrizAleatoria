@@ -1,0 +1,79 @@
+import java.util.Random;
+
+public class MatrizAleatoria {
+
+    public static void main(String[] args) {
+        // Generar matriz aleatoria 3x3x3
+        int[][][] matriz = new int[3][3][3];
+        Random random = new Random();
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                for (int k = 0; k < 3; k++) {
+                    matriz[i][j][k] = random.nextInt(10);
+                }
+            }
+        }
+        
+        // Imprimir matriz
+        System.out.println("Matriz generada:");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                for (int k = 0; k < 3; k++) {
+                    System.out.print(matriz[i][j][k] + " ");
+                }
+                System.out.println();
+            }
+            System.out.println();
+        }
+        
+        // Calcular suma de filas, columnas y capas
+        int[] sumasFilas = new int[3];
+        int[] sumasColumnas = new int[3];
+        int[] sumasCapas = new int[3];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                for (int k = 0; k < 3; k++) {
+                    sumasFilas[i] += matriz[i][j][k];
+                    sumasColumnas[j] += matriz[i][j][k];
+                    sumasCapas[k] += matriz[i][j][k];
+                }
+            }
+        }
+        
+        // Calcular suma de la parte exterior
+        int sumaExterior = matriz[0][0][0] + matriz[0][0][2] + matriz[0][2][0] + matriz[0][2][2]
+                         + matriz[2][0][0] + matriz[2][0][2] + matriz[2][2][0] + matriz[2][2][2]
+                         + matriz[0][1][0] + matriz[0][1][2] + matriz[2][1][0] + matriz[2][1][2]
+                         + matriz[1][0][0] + matriz[1][0][2] + matriz[1][2][0] + matriz[1][2][2];
+        
+        // Calcular suma total y resta de la matriz
+        int sumaTotal = 0;
+        int restaTotal = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                for (int k = 0; k < 3; k++) {
+                    sumaTotal += matriz[i][j][k];
+                    restaTotal -= matriz[i][j][k];
+                }
+            }
+        }
+
+      //Imprimir resultados
+System.out.println("\nResultados:");
+System.out.println("Suma de todas las filas:");
+for (int i = 0; i < 3; i++) {
+    System.out.println("Fila " + (i + 1) + ": " + sumasFilas[i]);
+}
+System.out.println("\nSuma de todas las columnas:");
+for (int j = 0; j < 3; j++) {
+    System.out.println("Columna " + (j + 1) + ": " + sumasColumnas[j]);
+}
+System.out.println("\nSuma de todas las capas:");
+for (int k = 0; k < 3; k++) {
+    System.out.println("Capa " + (k + 1) + ": " + sumasCapas[k]);
+}
+System.out.println("\nSuma de la parte exterior: " + sumaExterior);
+System.out.println("\nSuma total de la matriz: " + sumaTotal);
+System.out.println("Resta total de la matriz: " + restaTotal);
+    }
+}
